@@ -1,0 +1,59 @@
+<openerp>
+    <data>
+        <record id="view_account_analytic_account_dynatree_tree"
+                model="ir.ui.view">
+            <field name="name">account.analytic.account.dynatree</field>
+            <field name="model">account.analytic.account</field>
+            <field name="field_parent">child_complete_ids</field>
+            <field name="arch" type="xml">
+                <tree_dynatree version="7.0" string="Analytic account">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="debit"/>
+                    <field name="credit"/>
+                    <field name="balance"/>
+                    <field name="type"/>
+                </tree_dynatree>
+            </field>
+        </record>
+        <record id="action_account_analytic_account_dynatree"
+            model="ir.actions.act_window">
+            <field name="name">Analytic account chart</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree_dynatree</field>
+            <field name="domain">[('parent_id.parent_id', '=', False)]</field>
+            <field name="view_id"
+                ref="view_account_analytic_account_dynatree_tree"/>
+        </record>
+
+        <!-- Dynatree selectors -->
+        <record model="ir.actions.act_window.dynatree"
+                id="analytic_account_dynatree">
+            <field name="action_id"
+                ref="action_account_analytic_account_dynatree"/>
+            <field name="name">General account</field>
+            <field name="model_id" ref="account.model_account_account"/>
+            <field name="child_field_id"
+                ref="account.field_account_account_child_parent_ids"/>
+            <field name="init_domain">[('parent_id.code', '=', '0')]</field>
+            <field name="domain">[]</field>
+            <field name="search_field">general_account_id</field>
+            <field name="type">context</field>
+        </record>
+        <record model="ir.actions.act_window.dynatree"
+                id="analytic_account_dynatree_2">
+            <field name="action_id"
+                ref="action_account_analytic_account_dynatree"/>
+            <field name="name">Budget</field>
+            <field name="model_id"
+                ref="account.model_account_fiscalyear"/>
+            <field name="context">{}</field>
+            <field name="selectmode">single</field>
+            <field name="search_field">budget_id</field>
+            <field name="type">context</field>
+        </record>
+    </data>
+</openerp>
+
