@@ -54,6 +54,7 @@
             <field name="search_field">budget_id</field>
             <field name="type">context</field>
         </record>
+    <menuitem id="menu_account_dtree" name="Analytic Account Dytree" parent="account.menu_finance_charts" action="action_account_analytic_account_dynatree"/>
     </data>
 </openerp>
 
