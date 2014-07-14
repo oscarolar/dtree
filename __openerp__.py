@@ -9,7 +9,9 @@
     "version": "0.2",
     "depends": [
         'account',
+        'account_accountant',
         'analytic',
+        'web_dynatree',
         ],
     "data":['aaa.xml'],
     "js": [],
